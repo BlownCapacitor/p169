@@ -1,0 +1,84 @@
+<!--Mandatory Licsence Declarations:-->
+<!--"Maintenance vehicles" (https://skfb.ly/ov8UE) by OndyRen is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
+<!--"Rubik's Cube" (https://skfb.ly/6U9En) by EwanLejkowski is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AR toy store</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link href="./style.css" rel="stylesheet" />
+  <script src="./js/addButtons.js"></script>
+  <script src="./js/markerHandler.js"></script>
+
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; 
+    sourceWidth:1280; sourceHeight:960; 
+    displayWidth: 1280; displayHeight: 960; 
+    debugUIEnabled: false;" gesture-detector create-buttons>
+
+    <a-entity camera></a-entity>
+
+    <a-assets>
+      <a-asset-item id="trucks" src="./assets/truck/scene.gltf"></a-asset-item>
+      <a-asset-item id="cube" src="./assets/cube/rubiksCube.glb"></a-asset-item>
+    </a-assets>
+
+    <a-marker id="truck-marker" type="pattern" url="markers/pattern-truck.patt" cursor="rayOrigin: mouse">
+
+      <a-entity id="truckModel" position="-1 0 0" scale="0.5 0.5 0.5" gltf-model="#trucks" gesture-handler>
+      </a-entity>
+
+      <a-plane position="0 0 0" width="1.5" height="1.5" rotation="-90 0 0">
+        <a-plane position="0 0.89 0.02" width="1.49" height="0.3" rotation="0 0 0" color="#0ff0c3">
+          <a-entity position="0 0 0.1" rotation="0 0 0"
+            text="font:dejavu;value:Trucks (Set of 6): Set of 6;color:black;width: 1.8;height:1;align:center;">
+          </a-entity>
+        </a-plane>
+
+        <a-entity position="0 0 0.1" rotation="0 0 0"
+          text="color: black; align: center; width: 2; font: monoid;
+               value: Accurate 1:25 size models of various large vehicles\n\n2x Earthmover\n\n2x Garbage Truck\n\n1x Mini Crane\n\n1x Flatbed">
+        </a-entity>
+      </a-plane>
+
+    </a-marker>
+
+    <a-marker id="cube-marker" type="pattern" url="markers/pattern-7.patt" cursor="rayOrigin: mouse">
+
+      <a-entity id="cubeModel" position="-1 0 0" scale="0.5 0.5 0.5" gltf-model="#cube" gesture-handler>
+      </a-entity>
+
+      <a-plane position="0 0 0" width="1.5" height="1.5" rotation="-90 0 0">
+        <a-plane position="0 0.89 0.02" width="1.49" height="0.3" rotation="0 0 0" color="#0ff0c3">
+          <a-entity position="0 0 0.1" rotation="0 0 0"
+            text="font:dejavu;value:3x3x3 Rubik's Cube;color:black;width: 1.8;height:1;align:center;"></a-entity>
+        </a-plane>
+
+        <a-entity position="0 0 0.1" rotation="0 0 0"
+          text="color: black; align: center; width: 2; font: monoid;
+               value: Smooth-turning Rubik's speed cube\n\nA great puzzle for challenging your brain!\n\nAccurate turning and excellent corner-cutting move abilites make it great for\n\nboth proffesional cubers and hobbyists alike!">
+        </a-entity>
+      </a-plane>
+
+    </a-marker>
+
+
+  </a-scene>
+
+  <div id="button-div"></div>
+
+</body>
+
+</html>
